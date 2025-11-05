@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Διαδραστική Ανασκόπηση - Κεφάλαιο 5: Νομολεσία & Πρότυπα</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #17a2b8;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--success));
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: var(--dark);
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            justify-content: center;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid var(--light);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid var(--info);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        h3:hover {
+            transform: translateX(10px);
+            color: var(--primary);
+        }
+        
+        h4 {
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+        }
+        
+        .card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid var(--secondary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateX(8px);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-table th {
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .interactive-table th:hover {
+            background: var(--dark);
+        }
+        
+        .interactive-table td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        .interactive-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .expandable {
+            margin: 20px 0;
+            border: 2px solid var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .expandable-header {
+            background: var(--light);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .expandable-header:hover {
+            background: #dfe6e9;
+        }
+        
+        .expandable-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: #fafafa;
+        }
+        
+        .expandable.active .expandable-content {
+            padding: 25px 20px;
+            max-height: 2000px;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+            border-left: 6px solid var(--secondary);
+        }
+        
+        .example-box::before {
+            content: '📋 Πρακτικό Παράδειγμα';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .comparison-card h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .keyword-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .keyword-tag:hover {
+            background: var(--accent);
+            transform: scale(1.08);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 25px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+        
+        .flow-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .flow-step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .flow-step:hover {
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .flow-step-number {
+            background: var(--secondary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+        }
+        
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            color: white;
+        }
+        
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+        }
+        
+        .quiz-option.correct {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .quiz-option.incorrect {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .download-section {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+            border: 2px dashed var(--secondary);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .download-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .section-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .section-nav ul {
+            list-style: none;
+        }
+        
+        .section-nav li {
+            margin: 8px 0;
+        }
+        
+        .section-nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .section-nav a:hover {
+            color: var(--secondary);
+            background: var(--light);
+        }
+        
+        .quiz-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .quiz-score {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .section-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Κεφάλαιο 5</h1>
+            <div class="subtitle">Νομοθεσία Τροφίμων – Ποτών & Πρότυπα Πιστοποίησης</div>
+            <p>Πλήρης Διαδραστική Ανασκόπηση με Κουίζ & Πλοήγηση</p>
+        </div>
+
+        <nav class="section-nav">
+            <h4>📑 Πλοήγηση</h4>
+            <ul>
+                <li><a href="#objectives" onclick="showSection('objectives')">🎯 Στόχοι</a></li>
+                <li><a href="#legislation" onclick="showSection('legislation')">⚖️ Νομοθεσία</a></li>
+                <li><a href="#organizations" onclick="showSection('organizations')">🏛️ Οργανισμοί</a></li>
+                <li><a href="#standards" onclick="showSection('standards')">📋 Πρότυπα</a></li>
+                <li><a href="#agro" onclick="showSection('agro')">🌱 AGRO</a></li>
+                <li><a href="#special" onclick="showSection('special')">✨ Ειδικά</a></li>
+                <li><a href="#quiz-section" onclick="showSection('quiz-section')">🎯 Κουίζ</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showSection('objectives')">🎯 Στόχοι</button>
+            <button class="tab-btn" onclick="showSection('legislation')">⚖️ Νομοθεσία</button>
+            <button class="tab-btn" onclick="showSection('organizations')">🏛️ Οργανισμοί</button>
+            <button class="tab-btn" onclick="showSection('standards')">📋 Πρότυπα</button>
+            <button class="tab-btn" onclick="showSection('agro')">🌱 AGRO</button>
+            <button class="tab-btn" onclick="showSection('special')">✨ Ειδικά</button>
+            <button class="tab-btn" onclick="showSection('quiz-section')">🎯 Κουίζ</button>
+        </div>
+
+        <!-- Στόχοι Κεφαλαίου -->
+        <div id="objectives" class="content-section active">
+            <h2>🎯 Στόχοι & Εισαγωγή</h2>
+            
+            <div class="card">
+                <h3 id="importance">Γιατί αυτό το κεφάλαιο είναι σημαντικό;</h3>
+                <p>Η γνώση της νομοθεσίας και των προτύπων πιστοποίησης είναι <strong>απαραίτητη</strong> για κάθε επαγγελματία στον τομέα των τροφίμων.</p>
+            </div>
+
+            <div class="card">
+                <h3 id="benefits">Οφέλη Κατανόησης</h3>
+                <ul>
+                    <li>✅ Νομική συμμόρφωση και αποφυγή προστίμων</li>
+                    <li>✅ Πρόσβαση σε νέες αγορές (εγχώριες και διεθνείς)</li>
+                    <li>✅ Αύξηση της αξιοπιστίας της επιχείρησης</li>
+                    <li>✅ Βελτίωση της ποιότητας των προϊόντων</li>
+                    <li>✅ Προστασία των καταναλωτών</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Νομοθεσία -->
+        <div id="legislation" class="content-section">
+            <h2>⚖️ Κοινοτική Νομοθεσία</h2>
+            
+            <div class="card">
+                <h3 id="regulation-178">Κανονισμός (ΕΚ) 178/2002</h3>
+                <p><strong>Γενικές Αρχές & Ιχνηλασιμότητα</strong></p>
+                <ul>
+                    <li>Υποχρεωτική ιχνηλασιμότητα "ένα βήμα πίσω - ένα βήμα μπροστά"</li>
+                    <li>Βασικές αρχές ασφάλειας τροφίμων</li>
+                    <li>Δημιουργία της EFSA</li>
+                    <li>Πρόστιμα έως 500.000€, ανάκληση αδειών</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="regulation-852">Κανονισμός (ΕΕ) 852/2004</h3>
+                <p><strong>Υγιεινή των Τροφίμων</strong></p>
+                <ul>
+                    <li>Εφαρμογή συστήματος HACCP</li>
+                    <li>Πρόγραμμα Προαπαιτούμενων Όρων</li>
+                    <li>Εγγραφή επιχειρήσεων τροφίμων</li>
+                    <li>Κλείσιμο μονάδας σε περίπτωση μη συμμόρφωσης</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="regulation-853">Κανονισμός (ΕΚ) 853/2004</h3>
+                <p><strong>Τρόφιμα Ζωικής Προέλευσης</strong></p>
+                <ul>
+                    <li>Ειδικές απαιτήσεις για κρέας, ψάρια, γάλα, αυγά</li>
+                    <li>Ειδικές συνθήκες παραγωγής και επεξεργασίας</li>
+                    <li>Ετικέτες και ιχνηλασιμότητα</li>
+                    <li>Απαγόρευση εμπορίας, ποινική ευθύνη</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Οργανισμοί -->
+        <div id="organizations" class="content-section">
+            <h2>🏛️ Οργανισμοί & Φορείς</h2>
+            
+            <div class="card">
+                <h3 id="efsa">EFSA - Ευρωπαϊκή Αρχή Ασφάλειας Τροφίμων</h3>
+                <p><strong>Ρόλος και Αρχιδιότητες:</strong></p>
+                <ul>
+                    <li>🔬 Επιστημονική αξιολόγηση κινδύνων</li>
+                    <li>📊 Παροχή συμβουλών για νομοθεσία</li>
+                    <li>💡 Αξιολόγηση προσθέτων & GMOs</li>
+                    <li>⚖️ Καθορισμός ορίων καταλοίπων</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="efet">ΕΦΕΤ - Εθνικός Φορέας Ελέγχου Τροφίμων</h3>
+                <p><strong>Κύριες Αρχιδιότητες:</strong></p>
+                <ul>
+                    <li>👮 Επίσημος έλεγχος επιχειρήσεων</li>
+                    <li>📝 Έκδοση & ανάκληση αδειών</li>
+                    <li>⚖️ Εφαρμογή κυρώσεων</li>
+                    <li>🚨 Εθνικό σημείο επαφής RASFF</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="rasff">RASFF - Σύστημα Γρήγορης Ειδοποίησης</h3>
+                <p><strong>Τύποι Ειδοποιήσεων:</strong></p>
+                <ul>
+                    <li>⚠️ Alert (Άμεσος κίνδυνος)</li>
+                    <li>ℹ️ Information (Πληροφόρηση)</li>
+                    <li>🚫 Border Rejection (Απόρριψη στα σύνορα)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Πρότυπα Πιστοποίησης -->
+        <div id="standards" class="content-section">
+            <h2>📋 Ιδιωτικά Πρότυπα Πιστοποίησης</h2>
+            
+            <div class="card">
+                <h3 id="brc">BRCGS - British Retail Consortium</h3>
+                <p><strong>Βασικά Χαρακτηριστικά:</strong></p>
+                <ul>
+                    <li>🏪 Απαιτητικό για προμηθευτές λιανικής Βρετανίας</li>
+                    <li>⭐ Βαθμολογία AA-B-C (AA υψηλότερη)</li>
+                    <li>🎯 Εστίαση σε προϊόν & διαδικασία</li>
+                    <li>💰 Κόστος: €2,000-€5,000</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="ifs">IFS - International Featured Standard</h3>
+                <p><strong>Βασικά Χαρακτηριστικά:</strong></p>
+                <ul>
+                    <li>🛒 Προτίμηση από γερμανικές/γαλλικές αλυσίδες</li>
+                    <li>📊 K.O. Κριτήρια (υποχρεωτικά)</li>
+                    <li>⚙️ Εστίαση σε διαδικασία παραγωγής</li>
+                    <li>💰 Κόστος: €1,800-€4,500</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="fssc">FSSC 22000</h3>
+                <p><strong>Βασικά Χαρακτηριστικά:</strong></p>
+                <ul>
+                    <li>📊 Βασίζεται στο ISO 22000</li>
+                    <li>🏢 Ιδανικό για μεγάλες επιχειρήσεις</li>
+                    <li>🌐 Αναγνωρισμένο παγκοσμίως</li>
+                    <li>💰 Κόστος: €2,500-€6,000</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AGRO Πρότυπα -->
+        <div id="agro" class="content-section">
+            <h2>🌱 Εθνικά Πρότυπα AGRO</h2>
+            
+            <div class="card">
+                <h3 id="agro2">AGRO 2 - Ολοκληρωμένη Διαχείριση</h3>
+                <p><strong>Για Φυτική Παραγωγή</strong></p>
+                <ul>
+                    <li>🌿 Εφαρμογή σε ελαιόλαδο, κηπευτικά, φρούτα</li>
+                    <li>📝 5 Μέρη (Προδιαγραφή, Παραγωγή, Συσκευασία, κλπ)</li>
+                    <li>🏆 Χρήση σήματος "Προϊόν Ολοκληρωμένης Διαχείρισης"</li>
+                    <li>✅ Πλεονέκτημα σε δημόσιες προμηθεύσεις</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="agro3">AGRO 3 - Ποιότητα Χοιρινού Κρέατος</h3>
+                <p><strong>Ολόκληρη η Αλυσίδα Παραγωγής</strong></p>
+                <ul>
+                    <li>🐷 Εκτροφή, σφαγή, κοπή, συσκευασία</li>
+                    <li>🔍 Απαιτήσεις ιχνηλασιμότητας</li>
+                    <li>🏭 Έλεγχοι ποιότητας σε κάθε στάδιο</li>
+                    <li>📊 Τεκμηριωμένη ποιότητα</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="agro4">AGRO 4 - Ιχθυοκαλλιέργεια</h3>
+                <p><strong>Προϊόντα Υδατοκαλλιέργειας</strong></p>
+                <ul>
+                    <li>🐟 Θαλασσινά, γλυκού νερού, οστρακοειδή</li>
+                    <li>🌊 Έλεγχοι ποιότητας νερού</li>
+                    <li>🍽️ Έλεγχοι τροφών και υγείας ψαριών</li>
+                    <li>📈 Διασφάλιση ποιότητας τελικού προϊόντος</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ειδικά Πρότυπα -->
+        <div id="special" class="content-section">
+            <h2>✨ Πρότυπα Ειδικού Σκοπού</h2>
+            
+            <div class="card">
+                <h3 id="organic">Βιολογικά Προϊόντα</h3>
+                <p><strong>Κανονισμός (ΕΕ) 2018/848</strong></p>
+                <ul>
+                    <li>🚫 Χωρίς συνθετικά φυτοφάρμακα</li>
+                    <li>🌾 Φυσικές μέθοδοι εκτροφής</li>
+                    <li>🔍 Ετήσιος έλεγχος από εγκεκριμένους φορείς</li>
+                    <li>💰 Κόστος Πιστοποίησης: €500-€2,000/έτος</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="halal">Halal Πρότυπα</h3>
+                <p><strong>Ισλαμικά Πρότυπα</strong></p>
+                <ul>
+                    <li>🎯 Κατάλληλο για Μουσουλμάνους (1.8 δισ. αγορά)</li>
+                    <li>🔪 Ειδικές διαδικασίες σφαγής</li>
+                    <li>🚫 Απαγόρευση ορισμένων τροφίμων (χοιρινό)</li>
+                    <li>📦 Καθαρότητα συσκευασίας</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="kosher">Kosher Πρότυπα</h3>
+                <p><strong>Εβραϊκά Πρότυπα</strong></p>
+                <ul>
+                    <li>🎯 Κατάλληλο για Εβραίους (15 εκ. αγορά)</li>
+                    <li>📋 Συγκεκριμένοι κανόνες σφαγής</li>
+                    <li>🥛 Διαχωρισμός γαλακτοκομικών/κρεατικών</li>
+                    <li>✡️ Επιθεώρηση από ραββίνο</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Κουίζ Section -->
+        <div id="quiz-section" class="content-section">
+            <h2>🎯 Κουίζ Αυτοαξιολόγησης</h2>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">1. Ο Codex Alimentarius είναι ένας δεσμευτικός διεθνής νόμος για την ασφάλεια των τροφίμων.</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Σωστό</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Λάθος</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">2. Τα πρότυπα του Codex Alimentarius μπορούν να επηρεάσουν την εθνική νομοθεσία ενός κράτους.</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Σωστό</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Λάθος</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">3. Η ιχνηλασιμότητα ενός τροφίμου σημαίνει την παρακολούθησή του μόνο κατά την παραγωγή.</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Σωστό</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Λάθος</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">4. Ο ΕΦΕΤ είναι το Εθνικό Σημείο Επαφής του Codex Alimentarius για την Ελλάδα.</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Σωστό</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Λάθος</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">5. Ποιος Κανονισμός ΕΕ ρυθμίζει τη γενική νομοθεσία για την ασφάλεια των τροφίμων;</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">(ΕΚ) 178/2002</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">(ΕΕ) 852/2004</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">(ΕΚ) 853/2004</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">(ΕΚ) 2073/2005</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">6. Ποιος φορέας είναι υπεύθυνος για την επιστημονική αξιολόγηση κινδύνων στην ΕΕ;</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">RASFF</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">EFSA</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">ΕΦΕΤ</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">ΕΛΓΟ ΔΗΜΗΤΡΑ</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">7. Ποιό πρότυπο είναι πιο κατάλληλο για προμηθευτές γερμανικών σούπερ μάρκετ;</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">BRC</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">IFS</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">SQF</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">USDA Organic</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">8. Τα πρότυπα AGRO αναπτύχθηκαν από ποιον ελληνικό φορέα;</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">ΕΦΕΤ</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">ΕΛΓΟ ΔΗΜΗΤΡΑ</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">ΥΠΑΑΤ</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">ΕΟΤ</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">9. Ποιό πρότυπο απαγορεύει τη χρήση χοιρινού κρέατος και απαιτεί ειδικές διαδικασίες σφαγής;</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Βιολογικό</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Halal</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Vegan</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Kosher</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">10. Η εφαρμογή συστήματος ιχνηλασιμότητας είναι προαιρετική για τις επιχειρήσεις τροφίμων στην Ε.Ε.</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Σωστό</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Λάθος</div>
+                </div>
+            </div>
+
+            <div class="quiz-results" id="quiz-results">
+                <div class="quiz-score" id="quiz-score">Βαθμολογία: 0/10</div>
+                <button class="download-btn" onclick="resetQuiz()">🔄 Ξεκινήστε Ξανά το Κουίζ</button>
+            </div>
+
+            <div class="download-section">
+                <h4>📚 Πρόσθετο Υλικό</h4>
+                <button class="download-btn" onclick="downloadPDF('Ερωτήσεις_Αυτοαξιολόγησης_Κεφαλαίου_5.pdf')">
+                    📄 Κατεβάστε όλες τις Ερωτήσεις (PDF)
+                </button>
+                <button class="download-btn" onclick="downloadPDF('Απαντήσεις_Κεφαλαίου_5.pdf')">
+                    📄 Κατεβάστε τις Απαντήσεις (PDF)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Βασικές λειτουργίες
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Scroll to top when changing sections
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleExpandable(element) {
+            const expandable = element.parentElement;
+            expandable.classList.toggle('active');
+            
+            const arrow = element.querySelector('span');
+            arrow.textContent = expandable.classList.contains('active') ? '▲' : '▼';
+        }
+
+        // Κουίζ functionality
+        let score = 0;
+        let questionsAnswered = 0;
+        const totalQuestions = 10;
+
+        function checkAnswer(element, result) {
+            if (element.classList.contains('answered')) return;
+            
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.add('answered');
+                opt.style.pointerEvents = 'none';
+            });
+            
+            element.classList.add(result);
+            questionsAnswered++;
+            
+            if (result === 'correct') {
+                score++;
+            }
+            
+            // Show results when all questions are answered
+            if (questionsAnswered === totalQuestions) {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            const resultsDiv = document.getElementById('quiz-results');
+            const scoreDiv = document.getElementById('quiz-score');
+            
+            scoreDiv.textContent = `Βαθμολογία: ${score}/${totalQuestions}`;
+            resultsDiv.style.display = 'block';
+            
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            score = 0;
+            questionsAnswered = 0;
+            
+            // Reset all quiz options
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect', 'answered');
+                option.style.pointerEvents = 'auto';
+            });
+            
+            // Hide results
+            document.getElementById('quiz-results').style.display = 'none';
+            
+            // Scroll to top of quiz
+            document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Download functionality
+        function downloadPDF(filename) {
+            // Create a simple PDF content (in a real scenario, this would be a proper PDF file)
+            const content = `
+                ΕΡΩΤΗΣΕΙΣ ΑΥΤΟΑΞΙΟΛΟΓΗΣΗΣ - ΚΕΦΑΛΑΙΟ 5
+                
+                1. Ο Codex Alimentarius είναι ένας δεσμευτικός διεθνής νόμος για την ασφάλεια των τροφίμων.
+                Απάντηση: Λάθος
+                
+                2. Τα πρότυπα του Codex Alimentarius μπορούν να επηρεάσουν την εθνική νομοθεσία ενός κράτους.
+                Απάντηση: Σωστό
+                
+                3. Η ιχνηλασιμότητα ενός τροφίμου σημαίνει την παρακολούθησή του μόνο κατά την παραγωγή.
+                Απάντηση: Λάθος
+                
+                4. Ο ΕΦΕΤ είναι το Εθνικό Σημείο Επαφής του Codex Alimentarius για την Ελλάδα.
+                Απάντηση: Σωστό
+                
+                5. Ποιος Κανονισμός ΕΕ ρυθμίζει τη γενική νομοθεσία για την ασφάλεια των τροφίμων;
+                Απάντηση: (ΕΚ) 178/2002
+                
+                6. Ποιος φορέας είναι υπεύθυνος για την επιστημονική αξιολόγηση κινδύνων στην ΕΕ;
+                Απάντηση: EFSA
+                
+                7. Ποιό πρότυπο είναι πιο κατάλληλο για προμηθευτές γερμανικών σούπερ μάρκετ;
+                Απάντηση: IFS
+                
+                8. Τα πρότυπα AGRO αναπτύχθηκαν από ποιον ελληνικό φορέα;
+                Απάντηση: ΕΛΓΟ ΔΗΜΗΤΡΑ
+                
+                9. Ποιό πρότυπο απαγορεύει τη χρήση χοιρινού κρέατος και απαιτεί ειδικές διαδικασίες σφαγής;
+                Απάντηση: Halal
+                
+                10. Η εφαρμογή συστήματος ιχνηλασιμότητας είναι προαιρετική για τις επιχειρήσεις τροφίμων στην Ε.Ε.
+                Απάντηση: Λάθος
+            `;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Smooth scroll to headings
+        document.querySelectorAll('h3').forEach(heading => {
+            heading.style.cursor = 'pointer';
+            heading.addEventListener('click', function() {
+                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.comparison-card, .card, .flow-step').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
